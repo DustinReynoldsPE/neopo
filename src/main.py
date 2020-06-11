@@ -1,12 +1,3 @@
-#!/usr/bin/env python3
-
-# neopo: A lightweight solution for local Particle development.
-# Copyright (c) 2020 Nathan Robinson.
-
-# NOTE:
-# On Windows (Cygwin) you may need to change the shebang to:
-#!/usr/bin/env python
-
 import json
 import zipfile
 import io
@@ -21,7 +12,11 @@ import shutil
 import urllib.request
 
 # Global Variables
-DEPS = os.path.join(os.environ["HOME"], ".particle", "toolchains")
+home = os.path.expanduser("~")
+
+root = os.path.join(home, ".neopo")
+DEPS = os.path.join(home, ".particle", "toolchains")
+
 raspberry_pi_gcc_arm = "https://github.com/nrobinson2000/neopo/releases/download/0.0.1/gcc-arm-v5.3.1-raspberry-pi.tar.gz"
 running_on_windows = platform.system() == "Windows"
 
@@ -30,10 +25,10 @@ if running_on_windows:
     particle_cli = os.path.join(DEPS, "particle.exe")
 
 jsonFiles = {
-    "firmware": os.path.join(DEPS, "firmware.json"),
-    "toolchains": os.path.join(DEPS, "toolchains.json"),
-    "platforms": os.path.join(DEPS, "platforms.json"),
-    "manifest": os.path.join(DEPS, "manifest.json")
+    "firmware": os.path.join(root, "cache", "firmware.json"),
+    "toolchains": os.path.join(root, "cache", "toolchains.json"),
+    "platforms": os.path.join(root, "cache", "platforms.json"),
+    "manifest": os.path.join(root, "cache", "manifest.json")
 }
 
 vscodeFiles = {

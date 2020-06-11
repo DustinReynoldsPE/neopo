@@ -1,6 +1,3 @@
-# neopo: A lightweight solution for local Particle development.
-# Copyright (c) 2020 Nathan Robinson.
-
 os:
   - linux
   - osx

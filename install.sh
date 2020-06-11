@@ -1,47 +1,52 @@
 #!/bin/bash
 
-# neopo: A lightweight solution for local Particle development.
-# Copyright (c) 2020 Nathan Robinson.
+if [[ "$EUID" == 0 ]]; then
+    echo 'Do not run as root!' 1>&2;
 
-case "$(uname)" in
-Linux)
-    if hash apt >/dev/null 2>&1; then
-        echo "Installing apt dependencies..."
-    
-        if [ "$(uname -m)" == "x86_64" ]; then
-            sudo apt install libarchive-zip-perl libc6-i386
-        fi
-        if [ "$(uname -m)" == "armv7l" ]; then
-            sudo apt install libarchive-zip-perl libusb-1.0-0-dev dfu-util libudev-dev
-        fi
-    fi
-;;
+    exit 1
+fi
 
-Darwin) ;;
+mkdir -p ~/.neopo/bin
+mkdir -p ~/.neopo/etc
+mkdir -p ~/.neopo/src
+mkdir -p ~/.neopo/cache
 
-*) >&2 echo "Your OS is not supported! Use Linux or macOS." ; exit 1
+directory="$(mktemp -d)"
+
+trap "rm -rf '$directory'" 0 2 3 15
+
+git clone https://github.com/nrobinson2000/neopo.git "$directory"
+
+mv "$directory/dist/unix/bin" ~/.neopo
+mv "$directory/src" ~/.neopo
+mv "$directory/etc" ~/.neopo
+
+if [[ "$(uname)" == 'Linux' ]] && hash apt > /dev/null 2>&1; then
+    echo 'Installing apt dependencies...'
+
+    case "$(uname -m)" in
+        x86_64)
+            sudo apt install libarchive-zip-perl libc6-i386;;
+
+        armv7l)
+            sudo apt install libarchive-zip-perl libusb-1.0-0-dev dfu-util libudev-dev;;
+    esac
+fi
+
+case "$SHELL" in
+    /bin/bash)
+        echo 'export PATH="$HOME/.neopo/bin:$PATH"' >> ~/.bashrc
+        echo 'source "$HOME/.neopo/etc/bash_completion.d/neopo"' >> ~/.bashrc;;
+
+    /bin/zsh)
+        echo 'export PATH="$HOME/.neopo/bin:$PATH"' >> ~/.zprofile
+        echo 'source "$HOME/.neopo/etc/bash_completion.d/neopo"' >> ~/.zprofile;;
+
+    *)
+        echo 'Warning: You are not running bash or zsh so neopo cannot be added to your PATH automatically.'
+
+        echo 'Add this to your PATH: ~/.neopo/bin'
+        echo 'Source this on startup for completion: ~/.neopo/etc/bash_completion.d/neopo';;
 esac
 
-echo "Downloading installation script..."
-curl -LO "https://raw.githubusercontent.com/nrobinson2000/neopo/master/bin/install.py"
-sudo python3 install.py || exit
-sudo chown $USER $(sudo which neopo)
-rm install.py
-
-neopo install
-
-if [ "$(uname)" == "Linux" ]; then
-
-    sudo mkdir -p /etc/bash_completion.d
-
-    if [ -d /etc/bash_completion.d ]; then
-        echo "Installing tab completion script:"    
-        sudo curl -fsSLo /etc/bash_completion.d/neopo "https://raw.githubusercontent.com/nrobinson2000/neopo/master/bin/neopo-completion"
-    fi
-else
-    echo "The tab completion script is recommended for the best experience:"
-    echo "You can download it from:"
-    echo "  https://raw.githubusercontent.com/nrobinson2000/neopo/master/bin/neopo-completion"
-    echo "To load it you would run:"
-    echo "  $ source neopo-completion"
-fi
+~/.neopo/bin/neopo install

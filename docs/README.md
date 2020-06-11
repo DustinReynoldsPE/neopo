@@ -14,21 +14,21 @@
 
 ## Installation
 
-The easiest way to install neopo is to open a Terminal and run:
+### Linux and macOS
+
+Open a terminal and run:
 
 ```bash
-$ bash <( curl -sL https://git.io/JfwhJ )
+bash <( curl -sL https://git.io/JfwhJ )
 ```
 
-Alternatively, you can clone this repository, add the directory to your `PATH`, and run the install command:
+### Windows
 
-```bash
-$ git clone https://github.com/nrobinson2000/neopo
-$ export PATH="$PATH:$PWD/neopo"
-$ neopo install
+Open PowerShell and run:
+
+```powershell
+iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JfMVG'))
 ```
-
-On Windows the installation process is more involved but not very difficult: [Windows Installation](windows.md)
 
 ## Examples
 

@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# neopo: A lightweight solution for local Particle development.
-# Copyright (c) 2020 Nathan Robinson.
-
 export PATH="$PATH:$PWD/bin"
 
 if [ "$(uname)" == 'Linux' ]; then
