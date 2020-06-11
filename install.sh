@@ -13,7 +13,7 @@ mkdir -p ~/.neopo/cache
 
 directory="$(mktemp -d)"
 
-trap "rm -rf '$directory'" 0 2 3 15
+#trap "rm -rf '$directory'" 0 2 3 15
 
 git clone https://github.com/nrobinson2000/neopo.git "$directory"
 git checkout dev "$directory"
