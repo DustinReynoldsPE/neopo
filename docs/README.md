@@ -19,7 +19,7 @@
 Open a terminal and run:
 
 ```bash
-bash <( curl -sL https://git.io/JfwhJ )
+bash <( curl -sL https://raw.githubusercontent.com/nrobinson2000/neopo/dev/install.sh )
 ```
 
 ### Windows
@@ -27,7 +27,7 @@ bash <( curl -sL https://git.io/JfwhJ )
 Open PowerShell and run:
 
 ```powershell
-iex ((New-Object System.Net.WebClient).DownloadString('https://git.io/JfMVG'))
+iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/nrobinson2000/neopo/dev/install.ps1'))
 ```
 
 ## Examples
