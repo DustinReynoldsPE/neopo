@@ -19,8 +19,8 @@ git clone https://github.com/nrobinson2000/neopo.git "$directory"
 git -C "$directory" checkout dev
 
 mv "$directory/dist/unix/bin" ~/.neopo
+mv "$directory/dist/unix/etc" ~/.neopo
 mv "$directory/src" ~/.neopo
-mv "$directory/etc" ~/.neopo
 
 if [[ "$(uname)" == 'Linux' ]] && hash apt > /dev/null 2>&1; then
     echo 'Installing apt dependencies...'
