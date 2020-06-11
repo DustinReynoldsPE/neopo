@@ -37,11 +37,11 @@ fi
 case "$SHELL" in
     /bin/bash)
         echo 'export PATH="$HOME/.neopo/bin:$PATH"' >> ~/.bashrc
-        echo '/bin/bash "$HOME/.neopo/etc/bash_completion.d/neopo"' >> ~/.bashrc;;
+        echo 'source "$HOME/.neopo/etc/bash_completion.d/neopo.sh"' >> ~/.bashrc;;
 
     /bin/zsh)
         echo 'export PATH="$HOME/.neopo/bin:$PATH"' >> ~/.zprofile
-        echo '/bin/bash "$HOME/.neopo/etc/bash_completion.d/neopo"' >> ~/.zprofile;;
+        echo 'source "$HOME/.neopo/etc/bash_completion.d/neopo.sh"' >> ~/.zprofile;;
 
     *)
         echo 'Warning: You are not running bash or zsh so neopo cannot be added to your PATH automatically.'
