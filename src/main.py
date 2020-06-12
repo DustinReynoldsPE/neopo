@@ -1,14 +1,14 @@
-import json
-import zipfile
 import io
-import tarfile
-import platform
-import stat
 import os
-import pathlib
 import sys
-import subprocess
+import json
+import stat
 import shutil
+import zipfile
+import tarfile
+import pathlib
+import platform
+import subprocess
 import urllib.request
 
 home = os.path.expanduser("~")
