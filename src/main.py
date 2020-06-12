@@ -23,7 +23,7 @@ SCRIPTS_DIR = os.path.join(NEOPO_DEPS, "scripts")
 raspberry_pi_gcc_arm = "https://github.com/nrobinson2000/neopo/releases/download/0.0.1/gcc-arm-v5.3.1-raspberry-pi.tar.gz"
 running_on_windows = platform.system() == "Windows"
 
-particle_cli = os.path.join(NEOPO_DEPS, "bin", "particle")
+particle_cli = os.path.join(NEOPO_DEPS, "share", "particle")
 
 if running_on_windows:
     particle_cli = os.path.join(NEOPO_DEPS, "bin", "particle.exe")

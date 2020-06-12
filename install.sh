@@ -10,6 +10,7 @@ mkdir -p ~/.neopo/bin
 mkdir -p ~/.neopo/etc
 mkdir -p ~/.neopo/src
 mkdir -p ~/.neopo/cache
+mkdir -p ~/.neopo/share
 
 directory="$(mktemp -d)"
 
