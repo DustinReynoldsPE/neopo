@@ -1,1 +1,1 @@
-@python %USERPROFILE%\.neopo\src\main.py %@
+@python %USERPROFILE%\.neopo\src\main.py %*
