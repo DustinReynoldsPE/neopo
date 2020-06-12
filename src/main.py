@@ -26,7 +26,7 @@ running_on_windows = platform.system() == "Windows"
 particle_cli = os.path.join(NEOPO_DEPS, "share", "particle")
 
 if running_on_windows:
-    particle_cli = os.path.join(NEOPO_DEPS, "bin", "particle.exe")
+    particle_cli = os.path.join(NEOPO_DEPS, "share", "particle.exe")
 
 jsonFiles = {
     "firmware": os.path.join(CACHE_DIR, "firmware.json"),
