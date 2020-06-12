@@ -23,10 +23,11 @@ SCRIPTS_DIR = os.path.join(NEOPO_DEPS, "scripts")
 raspberry_pi_gcc_arm = "https://github.com/nrobinson2000/neopo/releases/download/0.0.1/gcc-arm-v5.3.1-raspberry-pi.tar.gz"
 running_on_windows = platform.system() == "Windows"
 
-particle_cli = os.path.join(NEOPO_DEPS, "share", "particle")
+PARTICLE_CLI_DIR = os.path.join(NEOPO_DEPS, "share")
+particle_cli = os.path.join(PARTICLE_CLI_DIR, "particle")
 
 if running_on_windows:
-    particle_cli = os.path.join(NEOPO_DEPS, "share", "particle.exe")
+    particle_cli = os.path.join(PARTICLE_CLI_DIR, "particle.exe")
 
 jsonFiles = {
     "firmware": os.path.join(CACHE_DIR, "firmware.json"),
@@ -310,7 +311,7 @@ def uninstall(args):
 # Create a Particle project and copy in Workbench settings
 def create(path, name):
     tempEnv = os.environ.copy()
-    addToPath(tempEnv, NEOPO_DEPS)
+    addToPath(tempEnv, PARTICLE_CLI_DIR)
 
     returncode = subprocess.run(
         ["particle", "project", "create", path, "--name", name],
