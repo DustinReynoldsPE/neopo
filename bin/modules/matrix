@@ -1,0 +1,80 @@
+configure photon 1.5.2 test
+build test
+configure p1 1.5.2 test
+build test
+configure electron 1.5.2 test
+build test
+configure argon 1.5.2 test
+build test
+configure boron 1.5.2 test
+build test
+configure xenon 1.5.2 test
+build test
+configure bsom 1.5.2 test
+build test
+configure b5som 1.5.2 test
+build test
+configure photon 1.5.1 test
+build test
+configure p1 1.5.1 test
+build test
+configure electron 1.5.1 test
+build test
+configure argon 1.5.1 test
+build test
+configure boron 1.5.1 test
+build test
+configure xenon 1.5.1 test
+build test
+configure bsom 1.5.1 test
+build test
+configure b5som 1.5.1 test
+build test
+configure photon 1.5.1-rc.1 test
+build test
+configure p1 1.5.1-rc.1 test
+build test
+configure electron 1.5.1-rc.1 test
+build test
+configure argon 1.5.1-rc.1 test
+build test
+configure boron 1.5.1-rc.1 test
+build test
+configure xenon 1.5.1-rc.1 test
+build test
+configure bsom 1.5.1-rc.1 test
+build test
+configure b5som 1.5.1-rc.1 test
+build test
+configure photon 1.5.0 test
+build test
+configure p1 1.5.0 test
+build test
+configure electron 1.5.0 test
+build test
+configure argon 1.5.0 test
+build test
+configure boron 1.5.0 test
+build test
+configure xenon 1.5.0 test
+build test
+configure bsom 1.5.0 test
+build test
+configure b5som 1.5.0 test
+build test
+configure photon 1.5.0-rc.2 test
+build test
+configure p1 1.5.0-rc.2 test
+build test
+configure electron 1.5.0-rc.2 test
+build test
+configure argon 1.5.0-rc.2 test
+build test
+configure boron 1.5.0-rc.2 test
+build test
+configure xenon 1.5.0-rc.2 test
+build test
+configure bsom 1.5.0-rc.2 test
+build test
+configure b5som 1.5.0-rc.2 test
+build test

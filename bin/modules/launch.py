@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
+
 import command
 import cache
 
@@ -15,5 +16,4 @@ def main():
         command.print_help(sys.argv)
 
 if __name__ == "__main__":
-    # print(sys.argv)
     main()

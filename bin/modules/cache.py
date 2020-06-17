@@ -3,10 +3,6 @@ import platform
 import json
 
 import command
-
-
-
-
 import script
 import install
 import build
@@ -141,7 +137,6 @@ def getMakefileTargets(args):
                 if line.startswith(sep):
                     print(line.partition(sep)[2].strip("\n"))
                     return
-
 
 # List all scripts installed (for completion)
 def listScripts(args):

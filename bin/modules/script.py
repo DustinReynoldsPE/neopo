@@ -1,7 +1,7 @@
 import os
 import shutil
+
 import cache
-import command
 
 # Load a script into the scripts directory
 def load(args):
@@ -37,7 +37,7 @@ def script(args):
                 if len(process) > 1:
                     print(process)
                     try:
-                        command.commands[process[1]](process)
+                        cache.commands[process[1]](process)
                     except KeyError:
                         print("Invalid command!")
                         exit(1)

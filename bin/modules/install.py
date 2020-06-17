@@ -7,6 +7,7 @@ import io
 import zipfile
 import tarfile
 import stat
+
 import cache
 
 # Find the Workbench extension URL from the Visual Studio Marketplace

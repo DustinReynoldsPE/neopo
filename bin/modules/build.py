@@ -1,11 +1,11 @@
-import cache
 import subprocess
 import os
 import json
 import shutil
-import install
 import pathlib
 
+import cache
+import install
 
 # Create a Particle project and copy in Workbench settings
 def create(path, name):
