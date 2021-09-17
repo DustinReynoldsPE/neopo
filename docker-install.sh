@@ -10,10 +10,12 @@ apt -y --no-install-recommends install libarchive-zip-perl libc6-i386 python3 vi
 git python3-wheel python3-setuptools python3-pip curl # Build only
 
 # Download particle completion
-curl -sLo ".completions/particle" "https://raw.githubusercontent.com/nrobinson2000/particle-cli-completion/master/particle"
+#curl -sLo ".completions/particle" "https://raw.githubusercontent.com/nrobinson2000/particle-cli-completion/master/particle"
 
 # Install neopo with pip
 python3 -m pip install .
+
+# Install for root account:
 
 # Use custom path
 export NEOPO_PATH="$HOME/.neopo"

@@ -5,3 +5,4 @@
 !scripts
 !completion
 !docker-install.sh
+!docker-install-as-user.sh
