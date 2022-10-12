@@ -1,4 +1,4 @@
-from neopo.command import commands, iterable_commands
+from neopo.command import commands, iterable_commands, legacy_commands
 
 print(r'''# neopo(1) completion
 # depends on jq(1)
@@ -15,7 +15,7 @@ _find_cache() {
     [ -d "$HOME/.neopo/cache" ] && echo "$HOME/.neopo/cache" || exit
 }
 
-_project() { 
+_project() {
     local _projects
     local _dir
 
@@ -100,6 +100,29 @@ _neopo() {
 
     if [ "$prev2" == "create" ]; then
         _get_versions
+        return 0
+    fi
+
+    if [ "$prev" == "bootloader" ]; then
+        _configure
+        return 0
+    fi
+
+    if [ "$prev1" == "bootloader" ]; then
+        _get_versions
+        return 0
+    fi
+
+    local legacy_options="serial dfu"
+    local legacy_options2="open close"
+
+    if [ "$prev" == "legacy" ]; then
+        COMPREPLY=($(compgen -W "$legacy_options" -- "$cur"))
+        return 0
+    fi
+
+    if [ "$prev1" == "legacy" ] && [[ $legacy_options =~ "$prev" ]]; then
+        COMPREPLY=($(compgen -W "$legacy_options2" -- "$cur"))
         return 0
     fi
 

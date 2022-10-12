@@ -11,8 +11,10 @@ from .workbench import install_or_update, workbench_install
 from .toolchain import versions_command, get_command, download_unlisted_command, remove_command
 from .project import create_command, configure_command, flags_command, settings_command, libraries_command
 from .build import compile_command, flash_command, flash_all_command, clean_command, run_command, export_command
+from .build import flash_bootloader_command
 from .completion import versions_compressed, platforms_command, find_valid_projects, get_makefile_targets
 from .particle import particle_command, particle_env
+from .serial import get_particle_serial_ports, serial_open, dfu_open, serial_reset, dfu_close, get_dfu_device
 
 # Print all commands (for completion)
 def options(args):
@@ -140,6 +142,47 @@ def iterate_command(args):
 def iterate_options(args):
     print(*iterable_commands)
 
+# Available options for legacy
+legacy_commands = {
+    "serial open": serial_open,
+    "dfu open": dfu_open,
+    "serial close": serial_reset,
+    "dfu close": dfu_close,
+}
+
+# Run the legacy baud rate-based commands (imported from po/po-util for older gen 2 devices)
+def legacy_command(args):
+    # Remove "legacy" from process
+    del args[1]
+
+    # validate args
+    try:
+        full_arg = " ".join(args[1:3])
+        if not full_arg in legacy_commands.keys():
+            raise UserError("Invalid command! Commands are: {}".format(list(legacy_commands.keys())))
+    except IndexError as error:
+        raise UserError(
+            "You must supply a full legacy command! Commands are: {}".format(legacy_commands.keys())) from error
+
+    # dfu_close doesn't need port
+    if full_arg == "dfu close":
+        return legacy_commands[full_arg]()
+
+    # Find serial ports associated with Particle devices connected via USB
+    serial_ports = get_particle_serial_ports()
+    if not serial_ports:
+        if full_arg == "dfu open" and get_dfu_device() is not None:
+                raise ProcessError("Already have a device in DFU mode and no other devices found!")
+        raise ProcessError("No devices found!")
+
+    for port in serial_ports:
+        # Run the appropriate command
+        legacy_commands[full_arg](port)
+
+# Print all legacy options (for completion)
+def legacy_options(args):
+    print(*legacy_commands)
+
 # Run POSTINSTALL setup script for Manjaro/Arch
 def setup_command(args):
     # Check for lock file in ~/.neopo to discourage
@@ -185,6 +228,7 @@ commands = {
     "build": compile_command,
     "flash": flash_command,
     "flash-all": flash_all_command,
+    "bootloader": flash_bootloader_command,
     "clean": clean_command,
     "run": run_command,
     "export": export_command,
@@ -201,6 +245,8 @@ commands = {
     "script": script_command,
     "iterate": iterate_command,
     "options-iterable": iterate_options,
+    "legacy": legacy_command,
+    "options-legacy": legacy_options,
     "flags": flags_command,
     "upgrade": upgrade_command,
     "particle": particle_command,

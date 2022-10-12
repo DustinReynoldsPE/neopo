@@ -1,5 +1,5 @@
 <!-- Creator     : groff version 1.22.4 -->
-<!-- CreationDate: Sun Jun 13 15:38:51 2021 -->
+<!-- CreationDate: Thu Mar 10 04:58:50 2022 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -130,22 +130,6 @@ rather than skipped if the latest versions are already
 installed. To skip the installation of all dependencies, use
 the <b>-s</b> parameter instead.</p>
 
-<p style="margin-left:11%;"><b>upgrade</b></p>
-
-<p style="margin-left:22%;">Upgrade the neopo utility to
-the latest version available on GitHub. (Deprecated)</p>
-
-<p style="margin-left:11%;"><b>uninstall</b></p>
-
-<p style="margin-left:22%;">Uninstall neopo from the
-system. (Deprecated)</p>
-
-<p style="margin-left:22%; margin-top: 1em">The
-<b>upgrade</b> and <b>uninstall</b> commands are deprecated
-because neopo is installed with pip or from the AUR. Running
-them will provide information regarding how to upgrade or
-uninstall neopo.</p>
-
 <p style="margin-left:11%;"><b>versions</b></p>
 
 <p style="margin-left:22%;">List all known versions of
@@ -225,7 +209,7 @@ device to download the release from the cloud.</p>
 <p style="margin-left:22%;">Clean application firmware.
 Usually unnecessary but can eliminate some build errors.</p>
 
-<p style="margin-left:11%; margin-top: 1em"><b>SPECIAL
+<p style="margin-left:11%; margin-top: 1em"><b>PROJECT
 COMMANDS <br>
 create &lt;project&gt; [platform] [version]</b></p>
 
@@ -290,6 +274,15 @@ project. This command is useful when working with projects
 that use the cloud compiler because it allows you to quickly
 download the same libraries locally.</p>
 
+<p style="margin-left:11%; margin-top: 1em"><b>SPECIAL
+COMMANDS <br>
+bootloader &lt;platform&gt; &lt;version&gt; [-v/-q]</b></p>
+
+<p style="margin-left:22%;">An experimental command to
+build and flash the bootloader for a specified platform and
+Device OS version. After building the bootloader it is
+flashed over serial using particle-cli.</p>
+
 <p style="margin-left:11%;"><b>iterate &lt;command&gt;
 [OPTIONS] [-v/q]</b></p>
 
@@ -304,6 +297,20 @@ it can be used.</p>
 <p style="margin-left:22%; margin-top: 1em">The following
 commands are iterable: <b>compile, build, flash, flash-all,
 clean, run, script.</b></p>
+
+<p style="margin-left:11%;"><b>legacy
+&lt;command&gt;</b></p>
+
+<p style="margin-left:22%;">An advanced command used to
+place Gen 2 devices on old deviceOS versions into and out of
+serial mode and DFU mode. It triggers device states by
+imposing specific baud rates over the USB serial connection.
+It also leverages particle serial list to automatically
+determine the correct port as required.</p>
+
+<p style="margin-left:22%; margin-top: 1em">The following
+commands are available as legacy commands: <b>serial open,
+serial close, dfu open, dfu close.</b></p>
 
 <p style="margin-left:11%; margin-top: 1em"><b>SCRIPT
 INTERFACE</b> <br>
@@ -476,14 +483,15 @@ Particle CLI Documentation:
 </h2>
 
 
-<p style="margin-left:11%; margin-top: 1em">On Manjaro or
-Arch, neopo is installed as an Arch package from the AUR or
-built directly with makepkg. Depending on how it is
-installed, there are several additional steps required to
-complete the install of neopo. These steps are contained in
-a script located at /usr/share/neopo/scripts/POSTINSTALL.
-For convenience, this script can be executed using: <b>neopo
-setup</b></p>
+<p style="margin-left:11%; margin-top: 1em">On Arch-based
+distributions using the <b>neopo-git</b> package from the
+AUR is recommended.</p>
+
+<p style="margin-left:11%; margin-top: 1em">There are
+several additional steps required to complete the install of
+neopo. These steps are contained in a script located at
+/usr/share/neopo/scripts/POSTINSTALL. For convenience, this
+script can be executed using: <b>neopo setup</b></p>
 
 <p style="margin-left:11%; margin-top: 1em">On x86_64, this
 consists of installing the ncurses package from the AUR to
@@ -497,13 +505,11 @@ builds run only a few times slower than on Linux x86_64
 systems, which is still much faster than using Particle
 Workbench on Windows. Hopefully Particle will differentiate
 between armv7l and aarch64 in future releases so that using
-Particle on aarch64 will become more accessible.</p>
-
-<p style="margin-left:11%; margin-top: 1em">Using Particle
-Workbench on aarch64 is possible through the use of neopo.
-After installing <i>visual-studio-code-bin</i> from the AUR,
-the Workbench extensions can be installed and prepared with:
-<b>neopo setup-workbench</b></p>
+Particle on aarch64 will become more accessible. Using
+Particle Workbench on aarch64 is possible through the use of
+neopo. After installing <i>visual-studio-code-bin</i> from
+the AUR, the Workbench extensions can be installed and
+prepared with: <b>neopo setup-workbench</b></p>
 <hr>
 </body>
 </html>
